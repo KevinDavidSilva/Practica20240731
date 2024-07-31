@@ -1,19 +1,19 @@
 package org.esfe.servicios.Interfaces;
 
-import org.esfe.models.Producto;
+import org.esfe.models.ProductoKDSB;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 
 public interface IProductoService {
-    Page<Producto> buscarTodosPaginados(Pageable pageable);
+    Page<ProductoKDSB> buscarTodosPaginados(Pageable pageable);
 
-    List<Producto> obtenerTodos();
+    List<ProductoKDSB> obtenerTodos();
 
-    Optional<Producto> buscarPorId(Integer id);
+    Optional<ProductoKDSB> buscarPorId(Integer id);
 
-    Producto crearOEditar(Producto producto);
+    ProductoKDSB crearOEditar(ProductoKDSB productoKDSB);
 
     void eliminarPorId(Integer id);
 }

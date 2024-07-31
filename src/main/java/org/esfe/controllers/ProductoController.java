@@ -1,6 +1,6 @@
 package org.esfe.controllers;
 
-import org.esfe.models.Producto;
+import org.esfe.models.ProductoKDSB;
 import org.esfe.servicios.Interfaces.IProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,7 +31,7 @@ public class ProductoController {
         int pageSize = size.orElse(5); // tamaño de la página, se asigna 5
         Pageable pageable = PageRequest.of(currentPage, pageSize);
 
-        Page<Producto> productos = productoService.buscarTodosPaginados(pageable);
+        Page<ProductoKDSB> productos = productoService.buscarTodosPaginados(pageable);
         model.addAttribute("productos", productos);
 
         int totalPages = productos.getTotalPages();
@@ -46,56 +46,56 @@ public class ProductoController {
     }
 
     @GetMapping("/create")
-    public String create(Producto producto) {
-        return "producto/create";
+    public String create(ProductoKDSB productoKDSB) {
+        return "productoKDSB/create";
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute("producto") Producto producto, BindingResult result, Model model, RedirectAttributes attributes) {
+    public String save(@ModelAttribute("productoKDSB") ProductoKDSB productoKDSB, BindingResult result, Model model, RedirectAttributes attributes) {
         if (result.hasErrors()) {
-            model.addAttribute(producto);
+            model.addAttribute(productoKDSB);
             attributes.addFlashAttribute("error", "No se pudo guardar debido a un error.");
-            return "producto/create";
+            return "productoKDSB/create";
         }
 
-        productoService.crearOEditar(producto);
-        attributes.addFlashAttribute("msg", "Producto creado correctamente");
+        productoService.crearOEditar(productoKDSB);
+        attributes.addFlashAttribute("msg", "ProductoKDSB creado correctamente");
         return "redirect:/productos";
     }
 
     @GetMapping("/details/{id}")
     public String details(@PathVariable("id") Integer id, Model model) {
-        Producto producto = productoService.buscarPorId(id).orElse(null);
-        if (producto != null) {
-            String formattedDate = producto.getFechaVencimiento().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        ProductoKDSB productoKDSB = productoService.buscarPorId(id).orElse(null);
+        if (productoKDSB != null) {
+            String formattedDate = productoKDSB.getFechaVencimiento().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             model.addAttribute("fechaVencimiento", formattedDate);
         }
-        model.addAttribute("producto", producto);
-        return "producto/details";
+        model.addAttribute("productoKDSB", productoKDSB);
+        return "productoKDSB/details";
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, Model model) {
-        Producto producto = productoService.buscarPorId(id).get();
-        model.addAttribute("producto", producto);
-        return "producto/edit";
+        ProductoKDSB productoKDSB = productoService.buscarPorId(id).get();
+        model.addAttribute("productoKDSB", productoKDSB);
+        return "productoKDSB/edit";
     }
 
     @GetMapping("/remove/{id}")
     public String delete(@PathVariable("id") Integer id, Model model) {
-        Producto producto = productoService.buscarPorId(id).orElse(null);
-        if (producto != null) {
-            String formattedDate = producto.getFechaVencimiento().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        ProductoKDSB productoKDSB = productoService.buscarPorId(id).orElse(null);
+        if (productoKDSB != null) {
+            String formattedDate = productoKDSB.getFechaVencimiento().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             model.addAttribute("fechaVencimiento", formattedDate);
         }
-        model.addAttribute("producto", producto);
-        return "producto/delete";
+        model.addAttribute("productoKDSB", productoKDSB);
+        return "productoKDSB/delete";
     }
 
     @PostMapping("/delete")
     public String delete(@RequestParam("id") Integer id, RedirectAttributes attributes) {
         productoService.eliminarPorId(id);
-        attributes.addFlashAttribute("msg", "Producto eliminado correctamente");
+        attributes.addFlashAttribute("msg", "ProductoKDSB eliminado correctamente");
         return "redirect:/productos";
     }
 }

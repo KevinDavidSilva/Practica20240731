@@ -4,13 +4,13 @@
       layout:decorate="/layouts/_mainLayout">
 
 <div layout:fragment="content">
-    <h1>Crear nuevo producto</h1>
-    <form th:action="@{/productos/save}" th:object="${producto}" method="post">
+    <h1>Crear nuevo productoKDSB</h1>
+    <form th:action="@{/productos/save}" th:object="${productoKDSB}" method="post">
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" th:field="*{nombre}" id="nombre" placeholder="Escriba el nombre del producto" required>
+                    <input type="text" class="form-control" th:field="*{nombre}" id="nombre" placeholder="Escriba el nombre del productoKDSB" required>
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="precio">Precio</label>
-                    <input type="number" step="0.01" class="form-control" th:field="*{precio}" id="precio" placeholder="Escriba el precio del producto" required>
+                    <input type="number" step="0.01" class="form-control" th:field="*{precio}" id="precio" placeholder="Escriba el precio del productoKDSB" required>
                 </div>
             </div>
         </div>
