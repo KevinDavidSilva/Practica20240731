@@ -1,0 +1,36 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout">
+
+<div layout:fragment="content">
+    <h1>Detalles del producto</h1>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">ID</dt>
+            <dd class="col-sm-10" th:text="${producto.id}"></dd>
+
+            <dt class="col-sm-2">Nombre</dt>
+            <dd class="col-sm-10" th:text="${producto.nombre}"></dd>
+
+            <dt class="col-sm-2">Descripción</dt>
+            <dd class="col-sm-10" th:text="${producto.descripcion}"></dd>
+
+            <dt class="col-sm-2">Precio</dt>
+            <dd class="col-sm-10" th:text="${producto.precio}"></dd>
+
+            <dt class="col-sm-2">Fecha de Vencimiento</dt>
+            <dd class="col-sm-10" th:text="${fechaVencimiento}"></dd>
+
+            <dt class="col-sm-2">Estatus</dt>
+            <dd class="col-sm-10" th:text="${producto.estatus}"></dd>
+
+            <dt class="col-sm-2">Existencia</dt>
+            <dd class="col-sm-10" th:text="${producto.existencia}"></dd>
+        </dl>
+
+        <a th:href="@{/productos/edit/{id} (id = ${producto.id}) }" class="btn btn-outline-info">Editar</a> |
+        <a th:href="@{/productos}" class="btn btn-outline-secondary">Regresar</a>
+    </div>
+</div>
